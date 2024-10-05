@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+</head>
+<body>
+    <h2>用户注册</h2>
+    <form action="/submit_registration" method="post">
+        <label for="name">姓名:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">电子邮件:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">密码:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="confirm_password">确认密码:</label><br>
+        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+
+        <label>性别:</label><br>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">男</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">女</label><br><br>
+
+        <label for="country">选择国家:</label><br>
+        <select id="country" name="country">
+            <option value="">请选择国家</option>
+            <option value="china">中国</option>
+            <option value="usa">美国</option>
+            <option value="uk">英国</option>
+            <!-- Add more countries as needed -->
+        </select><br><br>
+
+        <label>兴趣:</label><br>
+        <input type="checkbox" id="reading" name="interest" value="reading">
+        <label for="reading">阅读</label>
+        <input type="checkbox" id="traveling" name="interest" value="traveling">
+        <label for="traveling">旅行</label>
+        <input type="checkbox" id="programming" name="interest" value="programming">
+        <label for="programming">编程</label><br><br>
+
+        <label for="message">留言:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
