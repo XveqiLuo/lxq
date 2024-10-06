@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <title>表格数据排序</title>
+    <style>
+        table {
+            width: 50%;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #dfeefd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .add-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <table id="myTable">
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+    </table>
+    <input type="text" id="nameInput" placeholder="姓名" />
+    <input type="number" id="ageInput" placeholder="年龄" />
+    <button id="addRow" class="add-button">添加数据</button>
+
+    <script>
+        const table = document.getElementById('myTable');
+        const nameInput = document.getElementById('nameInput');
+        const ageInput = document.getElementById('ageInput');
+        const addRowButton = document.getElementById('addRow');
+
+        function createRow(name, age) {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${age}</td>
+                <td><button onclick="deleteRow(this)">删除</button></td>
+            `;
+            return newRow;
+        }
+
+        function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            table.deleteRow(row.rowIndex);
+            sortTable();
+        }
+
+        function sortTable() {
+            const rows = Array.from(table.rows).slice(1);
+            rows.sort((a, b) => {
+                const ageA = parseInt(a.cells[1].textContent, 10);
+                const ageB = parseInt(b.cells[1].textContent, 10);
+                return ageA - ageB;
+            });
+            rows.forEach(row => table.appendChild(row));
+        }
+
+        addRowButton.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const age = ageInput.value.trim();
+
+            if (name && age) {
+                const newRow = createRow(name, age);
+                table.appendChild(newRow);
+                sortTable();
+                nameInput.value = '';
+                ageInput.value = '';
+            }
+        });
+
+        // 初始化排序
+        sortTable();
+    </script>
+</body>
+</html>

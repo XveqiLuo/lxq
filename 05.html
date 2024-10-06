@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>动态改变文档内容</title>
+</head>
+<body>
+    <h1>初始标题</h1>
+    <button id="changeTitle">改变标题</button>
+    <div id="currentTime"></div>
+
+    <script>
+        // 获取需要操作的DOM元素
+        var h1Element = document.querySelector('h1');
+        var button = document.getElementById('changeTitle');
+        var currentTimeDiv = document.getElementById('currentTime');
+
+        // 定义一个函数来更新<h1>的内容，并在页面底部显示当前时间
+        function updateContent() {
+            // 设置<h1>元素的新文本
+            h1Element.textContent = '欢迎来到我的网站';
+
+            // 获取当前时间
+            var now = new Date();
+
+            // 格式化时间
+            var year = now.getFullYear();
+            var month = ('0' + (now.getMonth() + 1)).slice(-2); // 月份从0开始，所以加1，并补零
+            var day = ('0' + now.getDate()).slice(-2);           // 补零
+            var hours = ('0' + now.getHours()).slice(-2);        // 补零
+            var minutes = ('0' + now.getMinutes()).slice(-2);    // 补零
+            var seconds = ('0' + now.getSeconds()).slice(-2);    // 补零
+
+            var formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+            // 更新页面底部的时间显示
+            currentTimeDiv.textContent = `${formattedTime}`;
+        }
+
+        // 给按钮添加点击事件监听器
+        button.addEventListener('click', updateContent);
+    </script>
+</body>
+</html>
